@@ -1,0 +1,83 @@
+---
+gradientMode: "hue"
+cellIdPreamble: "cell-"
+cells: 
+  sanitizer_rps:
+    dataRef: "sanitizer_rps"
+    label:
+      separator: "cr"
+      units: "none"
+      decimalPoints: 0
+  sanitizer_in:
+    dataRef: "sanitizer_up"
+    fillColor:
+      dataRef: "sanitizer_up"
+      thresholds:
+        - {color: "red", level: 0}     # Якщо значення 0 (або більше 0, але менше 1) — червоний
+        - {color: "green", level: 1}   # Якщо значення 1 (або більше) — зелений
+    strokeColor:
+      thresholds:
+        - {color: "red", level: 0}     # Те саме для лінії стрілки
+        - {color: "green", level: 1}
+    flowAnimation:
+      dataRef: "go_memstats_heap_alloc_bytes"
+      datapoint: "last"
+      thresholdOffValue: 0
+      thresholdLwrValue: 10
+      thresholdLwrDurationSecs: 1
+      thresholdUprValue: 50000000
+      thresholdUprDurationSecs: 0.1
+  sanitizer_box:
+    dataRef: "sanitizer_up"
+    strokeColor:
+      dataRef: "sanitizer_up"
+      thresholds:
+        - {color: "red", level: 0}     # Якщо значення 0 (або більше 0, але менше 1) — червоний
+        - {color: "green", level: 1}   # Якщо значення 1 (або більше) — зелений
+     
+  ingestion_rps:
+    dataRef: "ingestion_app_req_in_progress"
+    label:
+      separator: "cr"
+      units: "none"
+      decimalPoints: 2
+    link:
+      url: "/a/grafana-metricsdrilldown-app/drilldown?metric=app_requests_in_progress&actionView=breakdown&var-groupby=$__all&breakdownLayout=grid"    
+      openInNewWindow: true
+  ingestion_in:
+    dataRef: "ingestion_app_req_in_progress"
+    fillColor:
+      dataRef: "ingestion_app_req_in_progress"
+      thresholds:
+        - {color: "green", level: 0} 
+        - {color: "yellow", level: 3}  
+        - {color: "red", level: 10}   
+    strokeColor:
+      thresholds:
+        - {color: "green", level: 0} 
+        - {color: "yellow", level: 3}  
+        - {color: "red", level: 10}   
+  ingestion_box:
+    dataRef: "ingestion_up"
+    strokeColor:
+      dataRef: "ingestion_up"
+      thresholds:
+        - {color: "red", level: 0}     # Якщо значення 0 (або більше 0, але менше 1) — червоний
+        - {color: "green", level: 1}   # Якщо значення 1 (або більше) — зелений
+    link:
+      url: "/a/grafana-lokiexplore-app/explore/filename/-var-log-adapter-sanitizer.log/logs?from=now-15m&to=now&var-ds=dffohh7lfiy2of&var-filters=filename%7C%3D%7C%2Fvar%2Flog%2Fadapter%2Fsanitizer.log&patterns=%5B%5D"
+      openInNewWindow: true
+  operationIngestion:
+    dataRef: "operationIngestion"
+    label:
+      separator: "cr"
+      units: "none"
+      decimalPoints: 2
+    labelColor:
+      dataRef: "operationIngestionConsumerGroup"
+      thresholds:
+        - {color: "red", level: 0} 
+        - {color: "green", level: 1}  
+        
+        
+        
