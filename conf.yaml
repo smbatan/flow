@@ -81,9 +81,9 @@ cells:
         - {color: "green", level: 1} 
   builder_box:
     dataRef: "builder_up"
-      strokeColor:
+    strokeColor:
     dataRef: "builder_up"
-      thresholds:
+    thresholds:
         - {color: "red", level: 0}     # Якщо значення 0 (або більше 0, але менше 1) — червоний
         - {color: "green", level: 1}   # Якщо значення 1 (або більше) — зелений
         
